@@ -7,7 +7,6 @@ defmodule RobotSimulatorTest do
     assert RobotSimulator.direction(robot) == :north
   end
 
-  @tag :skip
   test "create works with valid arguments" do
     robot = RobotSimulator.create(:north, {0, 0})
     assert RobotSimulator.position(robot) == {0, 0}
