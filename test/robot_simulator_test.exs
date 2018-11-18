@@ -62,7 +62,6 @@ defmodule RobotSimulatorTest do
     assert RobotSimulator.position(robot3) == {11, 5}
   end
 
-  @tag :skip
   test "simulate errors on invalid instructions" do
     assert RobotSimulator.create() |> RobotSimulator.simulate("UUDDLRLRBASTART") ==
              {:error, "invalid instruction"}

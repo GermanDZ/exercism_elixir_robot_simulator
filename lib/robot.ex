@@ -12,4 +12,8 @@ defmodule Robot do
   def move(robot = %Robot{}, "A") do
     %{robot | position: Position.move(robot.position, robot.direction)}
   end
+
+  def move(_, _) do
+    {:error, "invalid instruction"}
+  end
 end

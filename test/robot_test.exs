@@ -61,5 +61,11 @@ defmodule RobotTest do
 
       assert %Position{x: -4, y: 0} = Robot.move(robot, "A").position
     end
+
+    test "move/2 for unknown instructions returns an error" do
+      robot = %Robot{}
+
+      assert {:error, "invalid instruction"} = Robot.move(robot, "X")
+    end
   end
 end
