@@ -62,6 +62,12 @@ defmodule RobotTest do
       assert %Position{x: -4, y: 0} = Robot.move(robot, "A").position
     end
 
+    test "move/2 for many movements make all movements" do
+      robot = %Robot{direction: %Direction{value: :west}, position: %Position{x: -3, y: 0}}
+
+      assert %Position{x: -4, y: -1} = Robot.move(robot, ["A", "L", "A"]).position
+    end
+
     test "move/2 for unknown instructions returns an error" do
       robot = %Robot{}
 

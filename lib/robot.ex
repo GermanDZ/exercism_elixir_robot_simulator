@@ -13,6 +13,14 @@ defmodule Robot do
     %{robot | position: Position.move(robot.position, robot.direction)}
   end
 
+  def move(robot, [single_instruction]) do
+    move(robot, single_instruction)
+  end
+
+  def move(robot, [first_instruction | more_instructions]) do
+    move(Robot.move(robot, first_instruction), more_instructions)
+  end
+
   def move(_, _) do
     {:error, "invalid instruction"}
   end
