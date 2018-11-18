@@ -14,6 +14,14 @@ defmodule RobotSimulator do
     end
   end
 
+  def simulate(robot, [first_instruction]) do
+    Robot.move(robot, first_instruction)
+  end
+
+  def simulate(robot, [first_instruction | more_instructions]) do
+    simulate(Robot.move(robot, first_instruction), more_instructions)
+  end
+
   @doc """
   Simulate the robot's movement given a string of instructions.
 
@@ -21,6 +29,7 @@ defmodule RobotSimulator do
   """
   @spec simulate(robot :: any, instructions :: String.t()) :: any
   def simulate(robot, instructions) do
+    simulate(robot, String.codepoints(instructions))
   end
 
   @doc """
