@@ -6,7 +6,11 @@ defmodule RobotSimulator do
   """
   @spec create(direction :: atom, position :: {integer, integer}) :: any
   def create(direction \\ :north, position \\ {0, 0}) do
-    %Robot{direction: direction, position: position}
+    with {:ok, direction} <- Direction.build(direction) do
+      %Robot{direction: direction, position: position}
+    else
+      err -> err
+    end
   end
 
   @doc """
@@ -25,7 +29,7 @@ defmodule RobotSimulator do
   """
   @spec direction(robot :: any) :: atom
   def direction(robot) do
-    robot.direction
+    robot.direction.value
   end
 
   @doc """
